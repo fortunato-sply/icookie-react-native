@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import MainPage from './pages/MainPage';
 import { PreferencesProvider } from './context/Preferences';
+import SearchPage from './pages/SearchPage';
+import FavoritesPage from './pages/FavoritesPage';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -12,7 +14,9 @@ export default function App() {
     <NavigationContainer>
       <PreferencesProvider>
         <Stack.Navigator>
-            <Stack.Screen options={{headerShown: false}} name="main" component={MainPage} />
+            <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
+            <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
+            <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
         </Stack.Navigator>
       </PreferencesProvider>
     </NavigationContainer>
