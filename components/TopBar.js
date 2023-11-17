@@ -19,14 +19,16 @@ export default function TopBar() {
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
+        width: '90vw',
         height: 60,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: '8px',
-        position: 'relative'
+        position: 'fixed',
+        backgroundColor: '#1B1B1B',
+        zIndex: 3
     },
     img: {
         width: '140px',

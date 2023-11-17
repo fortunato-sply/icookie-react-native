@@ -1,5 +1,6 @@
-import { useContext } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { useContext, useEffect, useRef } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native'
+import * as Animatable from 'react-native-animatable'
 import { PreferencesContext } from '../context/Preferences';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
@@ -9,14 +10,23 @@ export default function Modal() {
     const renderModal = () => {
         if (isModalOpen)
             return (
-                <View style={styles.container}>
+                <Animatable.View style={styles.container} animation={
+                    {
+                        from: {
+                            marginLeft: 300,   
+                        },
+                        to: {
+                            marginLeft: 0
+                        }
+                    }
+                } iterationCount={1} duration={300} >
                     <View style={styles.upside}>
                         <TouchableOpacity style={styles.iconBtn} onPress={() => toggleModal()}>
                             <ArrowCircleLeftIcon style={styles.icon} />
                         </TouchableOpacity>
                         <Text style={styles.textBold}>Opções</Text>
                     </View>
-                </View>
+                </Animatable.View>
             )
     }
 
@@ -31,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#252525',
+        backgroundColor: '#252525'
     },
     upside: {
         width: '100%',

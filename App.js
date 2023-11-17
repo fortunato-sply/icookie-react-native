@@ -7,18 +7,23 @@ import MainPage from './pages/MainPage';
 import { PreferencesProvider } from './context/Preferences';
 import SearchPage from './pages/SearchPage';
 import FavoritesPage from './pages/FavoritesPage';
+import { UserProvider } from './context/User';
+import LoginPage from './pages/LoginPage';
 
 export default function App() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
-      <PreferencesProvider>
-        <Stack.Navigator>
-            <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
-            <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
-            <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
-        </Stack.Navigator>
-      </PreferencesProvider>
+      <UserProvider>
+        <PreferencesProvider>
+          <Stack.Navigator>
+              <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
+              <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
+              <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
+              <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
+          </Stack.Navigator>
+        </PreferencesProvider>
+      </UserProvider>
     </NavigationContainer>
   );
 }

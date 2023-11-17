@@ -34,13 +34,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#252525',
         width: '100vw',
         height: 78,
-        position: 'absolute',
+        position: 'fixed',
         bottom: 0,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: 24
+        padding: 24,
+        zIndex: 3
     },
     icon: {
         width: 36,
