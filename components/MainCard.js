@@ -1,6 +1,6 @@
 import { AccessTime } from "@mui/icons-material";
 import { borderRadius } from "@mui/system";
-import { View, StyleSheet, ImageBackground, Image, Text, TouchableOpacity } from "react-native-web";
+import { View, StyleSheet, ImageBackground, Image, Text, TouchableOpacity } from "react-native";
 
 export default function MainCard({ data }) {
     //todo: pegar data do card e direcionar para pagina da receita
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     card: {
         marginTop: 76,
         width: '100%',
-        height: 150,
+        height: 165,
         borderRadius: 16,
         backgroundColor: '#1B1B1B',
         position: 'relative'

@@ -9,6 +9,8 @@ import SearchPage from './pages/SearchPage';
 import FavoritesPage from './pages/FavoritesPage';
 import { UserProvider } from './context/User';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import RecipePage from './pages/RecipePage';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -17,8 +19,10 @@ export default function App() {
       <UserProvider>
         <PreferencesProvider>
           <Stack.Navigator>
-              <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
+              <Stack.Screen options={{headerShown: false}} name="Receita" component={RecipePage} />
               <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
+              <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
+              <Stack.Screen options={{headerShown: false}} name="Cadastro" component={RegisterPage} />
               <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
               <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
           </Stack.Navigator>

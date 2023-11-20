@@ -1,7 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-web';
 
-export default function Card({ data }) {
+export default function BigCard({ data }) {
+    const navigation = useNavigation();
+
     return (
         <TouchableOpacity 
             style={styles.container}
@@ -20,7 +23,7 @@ const styles = StyleSheet.create({
         gap: 4
     },
     imgContainer: {
-        width: 165,
+        width: 350,
         height: 165
     },
     background: {

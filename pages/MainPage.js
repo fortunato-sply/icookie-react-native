@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native'
+import BigCard from '../components/BigCard';
 import Card from '../components/Card';
 import Footer from "../components/Footer";
 import MainCard from "../components/MainCard";
@@ -18,34 +19,33 @@ export default function MainPage() {
 
     const cards = [
         {
+            id: 1,
             img: "https://www.divinho.com.br/blog/wp-content/uploads/2022/05/Torta-Banoffee.jpg",
             name: 'Banoffee'
         },
         {
+            id: 2,
             img: "https://www.comidaereceitas.com.br/wp-content/uploads/2021/02/costelinhaa.jpg",
             name: 'Costelinha Suína'
         },
         {
+            id: 3,
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8CdWiRQLsxIUjAZiSSb3QJYoRK_U6fQRnSg&usqp=CAU",
             name: 'Sorvete Belga'
         },
         {
-            img: "https://img.freepik.com/fotos-gratis/cachorro-quente-de-carne-grelhada-com-lanche-de-ketchup-ia-generativa_188544-7829.jpg?w=2000",
-            name: 'Cachorro Quente'
-        },
-        {
-            img: "https://img.freepik.com/fotos-gratis/cachorro-quente-de-carne-grelhada-com-lanche-de-ketchup-ia-generativa_188544-7829.jpg?w=2000",
-            name: 'Cachorro Quente'
-        },
-        {
+            id: 4,
             img: "https://img.freepik.com/fotos-gratis/cachorro-quente-de-carne-grelhada-com-lanche-de-ketchup-ia-generativa_188544-7829.jpg?w=2000",
             name: 'Cachorro Quente'
         },
     ]
 
     const renderCards = (cards) => {
-        return cards.map((card) => {
-            return <Card data={card} />
+        return cards.map((card, i) => {
+            if(i % 5 == 0)
+                return <BigCard data={card} key={i} />
+
+            return <Card data={card} key={i} />
         })
     }
 

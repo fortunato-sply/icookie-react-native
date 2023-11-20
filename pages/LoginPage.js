@@ -1,8 +1,9 @@
+import { Link } from "@react-navigation/native";
 import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from "react-native-web";
 import Footer from "../components/Footer";
 const logo = require('../assets/stencilLogo.png')
 
-export default function LoginPage() {
+export default function LoginPage({ navigation }) {
     return (
         <>
             <View style={styles.container}>
@@ -13,6 +14,13 @@ export default function LoginPage() {
                 </View>
                 <TouchableOpacity style={styles.btn}>
                     <Text style={{ color: '#000', fontSize: 24, fontFamily:'Poppins', fontWeight: 600 }}>Entrar</Text>
+                </TouchableOpacity>
+                <Text style={{ color: '#808080', fontSize: 16, fontFamily: 'Poppins', marginTop: 20 }}>ou</Text>
+                <TouchableOpacity 
+                    style={styles.register}
+                    onPress={() => navigation.navigate('Cadastro')}
+                >
+                    <Text style={styles.registerTxt}>Cadastre-se</Text>
                 </TouchableOpacity>
             </View>
             <Footer />
@@ -72,5 +80,16 @@ const styles = StyleSheet.create({
         height: 70,
         borderRadius: 12,
         marginTop: 80
+    },
+    register: {
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    registerTxt: {
+        color: '#DCDCDC',
+        textDecorationLine: 'underline',
+        fontFamily: 'Poppins',
+        fontSize: 18
     }
 });

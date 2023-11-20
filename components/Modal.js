@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         height: 30
     },
     iconBtn: {
-        position: 'fixed',
+        position: 'absolute',
         left: 10,
         width: 50,
         height: '100%',
