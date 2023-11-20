@@ -17,11 +17,12 @@ export default function Card({ data }) {
 
 const styles = StyleSheet.create({
     container: {
-        gap: 4
+        gap: 4,
+        width: '48%',
     },
     imgContainer: {
-        width: 165,
-        height: 165
+        width: '100%',
+        height: 170
     },
     background: {
         width: '100%',

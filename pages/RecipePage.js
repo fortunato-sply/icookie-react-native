@@ -178,10 +178,12 @@ const styles = StyleSheet.create({
         width: '100%',
         gap: 24,
         marginTop: 20,
-        paddingBottom: 50
+        paddingBottom: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     step: {
-        width: '100%',
+        width: '90%',
         minHeight: 80,
         justifyContent: 'center',
         flexDirection: 'row',

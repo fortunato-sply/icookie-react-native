@@ -19,12 +19,12 @@ export default function App() {
       <UserProvider>
         <PreferencesProvider>
           <Stack.Navigator>
-              <Stack.Screen options={{headerShown: false}} name="Receita" component={RecipePage} />
               <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
               <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
               <Stack.Screen options={{headerShown: false}} name="Cadastro" component={RegisterPage} />
               <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
               <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
+              <Stack.Screen options={{headerShown: false}} name="Receita" component={RecipePage} />
           </Stack.Navigator>
         </PreferencesProvider>
       </UserProvider>

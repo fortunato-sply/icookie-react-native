@@ -20,10 +20,11 @@ export default function BigCard({ data }) {
 
 const styles = StyleSheet.create({
     container: {
-        gap: 4
+        gap: 4,
+        width: '100%'
     },
     imgContainer: {
-        width: 350,
+        width: '100%',
         height: 165
     },
     background: {
