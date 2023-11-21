@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     box: {
         backgroundColor: '#252525',
         width: '100vw',
-        minHeight: '80vh',
+        minHeight: '75vh',
         paddingHorizontal: 20,
         alignItems: 'center',
         position: 'fixed',

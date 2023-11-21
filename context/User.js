@@ -6,10 +6,15 @@ UserContext.displayName = 'UserContext';
 export const UserProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [user, setUser] = useState({ name: 'John Doe' })
+    const [user, setUser] = useState({ name: 'John Doe', isAdmin: true, })
 
     const login = (user) => {
         setUser(user)
+    }
+
+    const logout = () => {
+        setUser({})
+        setIsLoggedIn(false)
     }
 
     return (
@@ -17,7 +22,8 @@ export const UserProvider = ({ children }) => {
             value={{
                 isLoggedIn,
                 user,
-                login
+                login,
+                logout
             }}
         >
             {children}

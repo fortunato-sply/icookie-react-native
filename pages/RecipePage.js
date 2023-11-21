@@ -98,7 +98,9 @@ const styles = StyleSheet.create({
     icon: {
         color: '#FF7B50',
         width: 30,
-        height: 30
+        height: 30,
+        position: 'absolute',
+        left: 30
     },
     timeIcon: {
         width: 28,
@@ -121,9 +123,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins'
     },
     imgContainer: {
+        marginTop: 24,
         width: 350,
         height: 190,
-        marginTop: 20
     },
     background: {
         width: '100%',

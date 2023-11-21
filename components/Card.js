@@ -1,7 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-web';
 
 export default function Card({ data }) {
+    const navigation = useNavigation();
+    
     return (
         <TouchableOpacity 
             style={styles.container}

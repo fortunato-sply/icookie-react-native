@@ -4,9 +4,10 @@ import BigCard from '../components/BigCard';
 import Card from '../components/Card';
 import Footer from "../components/Footer";
 import MainCard from "../components/MainCard";
-import Modal from "../components/Modal";
+import CustomizedModal from "../components/CustomizedModal";
 import TopBar from "../components/TopBar";
 import { PreferencesContext } from '../context/Preferences';
+import Modal from 'react-native-modal';
 
 export default function MainPage() {
     const { isModalOpen } = useContext(PreferencesContext);
@@ -38,40 +39,50 @@ export default function MainPage() {
             img: "https://img.freepik.com/fotos-gratis/cachorro-quente-de-carne-grelhada-com-lanche-de-ketchup-ia-generativa_188544-7829.jpg?w=2000",
             name: 'Cachorro Quente'
         },
+        {
+            id: 4,
+            img: "https://img.freepik.com/fotos-gratis/cachorro-quente-de-carne-grelhada-com-lanche-de-ketchup-ia-generativa_188544-7829.jpg?w=2000",
+            name: 'Cachorro Quente'
+        },
+        {
+            id: 4,
+            img: "https://img.freepik.com/fotos-gratis/cachorro-quente-de-carne-grelhada-com-lanche-de-ketchup-ia-generativa_188544-7829.jpg?w=2000",
+            name: 'Cachorro Quente'
+        },
     ]
 
     const renderCards = (cards) => {
         return cards.map((card, i) => {
-            if(i % 5 == 0)
+            if (i % 5 == 0)
                 return <BigCard data={card} key={i} />
 
             return <Card data={card} key={i} />
         })
     }
 
-    if(!isModalOpen)
-        return (
-            <>
-                <View style={styles.container}>
-                    <TopBar />
-                    <MainCard data={mainCardData} />
-                    <Text style={styles.title}>As mais amadas</Text>
-                    <View style={styles.cards}>
-                        {renderCards(cards)}
-                        <View style={{ width: '100%', height: 100 }}></View>
-                    </View>
-                </View>
-                <Modal />
-                <Footer />
-            </>
-        )
-    else
-        return (
-            <View style={{backgroundColor: '#1b1b1b'}}>
-                <Modal />
-                <Footer />
-            </View>
-        )
+    return (
+        // <>
+        //     <View style={styles.container}>
+        //         <TopBar />
+        //         <MainCard data={mainCardData} />
+        //         <Text style={styles.title}>As mais amadas</Text>
+        //         <View style={styles.cards}>
+        //             {renderCards(cards)}
+        //             <View style={{ width: '100%', height: 100 }}></View>
+        //         </View>
+        //     </View>
+        //     <Modal 
+        //             isVisible={isModalOpen}
+        //             style={{ marginLeft: 0 }}
+        //             animationIn={'slideInRight'}
+        //             animationOut={'slideOutRight'}
+        //     >
+        //         <CustomizedModal />
+        //     </Modal>
+        //     <Footer />
+        // </>
+        <CustomizedModal />
+    )
 }
 
 const styles = StyleSheet.create({
