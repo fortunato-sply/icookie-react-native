@@ -39,11 +39,11 @@ export default function CustomizedModal() {
                     <Text style={{ fontSize: 16, fontFamily: 'Poppins', fontWeight: 600, color: '#bbb' }}>Dados pessoais</Text>
                     <View style={styles.options}>
                         <TouchableOpacity style={styles.option}>
-                            <Image source={userIcon} style={{ width: 36, height: 36, resizeMode: 'center' }} />
+                            <Image source={userIcon} style={[styles.optionIcon, { width: 30, height: 30 }]} />
                             <Text style={{ fontSize: 18, color: '#fff', fontWeight: 500, fontFamily: 'Poppins' }}>Meu perfil</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.option}>
-                            <Image source={editIcon} style={styles.optionIcon} />
+                            <Image source={editIcon} style={[styles.optionIcon, { width: 30, height: 30 }]} />
                             <Text style={{ fontSize: 18, color: '#fff', fontWeight: 500, fontFamily: 'Poppins' }}>Editar meus dados</Text>
                         </TouchableOpacity>
                     </View>
@@ -129,8 +129,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     optionIcon: {
-        width: 34,
-        height: 34,
-        resizeMode: 'contain'
+        width: 32,
+        height: 32,
+        resizeMode: 'center'
     }
 });

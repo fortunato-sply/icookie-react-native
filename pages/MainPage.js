@@ -61,27 +61,26 @@ export default function MainPage() {
     }
 
     return (
-        // <>
-        //     <View style={styles.container}>
-        //         <TopBar />
-        //         <MainCard data={mainCardData} />
-        //         <Text style={styles.title}>As mais amadas</Text>
-        //         <View style={styles.cards}>
-        //             {renderCards(cards)}
-        //             <View style={{ width: '100%', height: 100 }}></View>
-        //         </View>
-        //     </View>
-        //     <Modal 
-        //             isVisible={isModalOpen}
-        //             style={{ marginLeft: 0 }}
-        //             animationIn={'slideInRight'}
-        //             animationOut={'slideOutRight'}
-        //     >
-        //         <CustomizedModal />
-        //     </Modal>
-        //     <Footer />
-        // </>
-        <CustomizedModal />
+        <>
+            <View style={styles.container}>
+                <TopBar />
+                <MainCard data={mainCardData} />
+                <Text style={styles.title}>As mais amadas</Text>
+                <View style={styles.cards}>
+                    {renderCards(cards)}
+                    <View style={{ width: '100%', height: 100 }}></View>
+                </View>
+            </View>
+            <Modal 
+                    isVisible={isModalOpen}
+                    style={{ marginLeft: 0 }}
+                    animationIn={'slideInRight'}
+                    animationOut={'slideOutRight'}
+            >
+                <CustomizedModal />
+            </Modal>
+            <Footer />
+        </>
     )
 }
 
