@@ -2,15 +2,18 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useContext } from "react";
 import { PreferencesContext } from "../context/Preferences";
+import { modalSlice } from "../redux/modalSlice";
+import { useDispatch } from "react-redux";
 const logo = require('../assets/whitelogo.png')
 
 export default function TopBar() {
-    const { toggleModal } = useContext(PreferencesContext);
+    const { toggleModal } = modalSlice.actions;
+    const dispatch = useDispatch();
 
     return (
         <View style={styles.container}>
             <Image  style={styles.img} source={logo} />
-            <TouchableOpacity style={styles.iconBtn} onPress={() => toggleModal()}>
+            <TouchableOpacity style={styles.iconBtn} onPress={() => dispatch(toggleModal())}>
                 <MoreVertIcon style={styles.icon} />
             </TouchableOpacity>
         </View>

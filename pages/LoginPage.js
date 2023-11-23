@@ -1,18 +1,44 @@
 import { Link } from "@react-navigation/native";
 import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from "react-native-web";
 import Footer from "../components/Footer";
+import { authSlice } from "../redux/authSlice";
+import { useState } from "react";
+import api from '../config/api';
+
 const logo = require('../assets/stencilLogo.png')
 
 export default function LoginPage({ navigation }) {
+    const { setAuth } = authSlice.actions;
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onHandleLogin = async () => {
+        const user = {
+            email: email,
+            password: password
+        }
+
+        try {
+            const response = await api.post('/auth/login', user)
+                .then(res => {
+                    console.log(res.status);
+                    console.log(res.data);
+                })
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
     return (
         <>
             <View style={styles.container}>
-                <Image  style={styles.img} source={logo} />
+                <Image style={styles.img} source={logo} />
                 <View style={styles.inputs}>
-                    <TextInput style={styles.input} placeholderTextColor='#DFDFDF' placeholder='E-mail'></TextInput>
-                    <TextInput style={styles.input} placeholderTextColor='#DFDFDF' placeholder='Senha' secureTextEntry></TextInput>
+                    <TextInput style={styles.input} onChange={(e) => setEmail(e.target.value)} placeholderTextColor='#DFDFDF' placeholder='E-mail'></TextInput>
+                    <TextInput style={styles.input} onChange={(e) => setPassword(e.target.value)} placeholderTextColor='#DFDFDF' placeholder='Senha' secureTextEntry></TextInput>
                 </View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={() => onHandleLogin()}>
                     <Text style={{ color: '#000', fontSize: 24, fontFamily:'Poppins', fontWeight: 600 }}>Entrar</Text>
                 </TouchableOpacity>
                 <Text style={{ color: '#808080', fontSize: 16, fontFamily: 'Poppins', marginTop: 20 }}>ou</Text>

@@ -8,10 +8,12 @@ import CustomizedModal from "../components/CustomizedModal";
 import TopBar from "../components/TopBar";
 import { PreferencesContext } from '../context/Preferences';
 import Modal from 'react-native-modal';
+import { useSelector } from 'react-redux';
+import { modalSlice } from '../redux/modalSlice';
 
 export default function MainPage() {
-    const { isModalOpen } = useContext(PreferencesContext);
-
+    const { state } = useSelector((store) => store.preferencesModal);
+    
     const mainCardData = {
         img: "https://static.itdg.com.br/images/360-240/16dea8c3e7084abc502ee2793a583a5f/332854-original.jpg",
         name: 'Strogonoff de Frango',
@@ -72,7 +74,7 @@ export default function MainPage() {
                 </View>
             </View>
             <Modal 
-                    isVisible={isModalOpen}
+                    isVisible={state}
                     style={{ marginLeft: 0 }}
                     animationIn={'slideInRight'}
                     animationOut={'slideOutRight'}

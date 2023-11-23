@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, TouchableOpacity, Animated, Image } from 'react
 import { PreferencesContext } from '../context/Preferences';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { UserContext } from '../context/User';
+import { modalSlice } from '../redux/modalSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const coffeIcon = require('../assets/coffeIcon.png');
 const plusIcon = require('../assets/plusIcon.png');
@@ -10,11 +12,14 @@ const userIcon = require('../assets/userIcon.png');
 const editIcon = require('../assets/editIcon.png');
 
 export default function CustomizedModal() {
-    const { toggleModal } = useContext(PreferencesContext);
-    const { isLoggedIn, user, logout } = useContext(UserContext);
+    const dispatch = useDispatch();
+    const { toggleModal } = modalSlice.actions;
+
+    const { user } = useSelector((store) => store.auth);
+    const isLoggedIn = user != null;
 
     const renderAdmOptions = () => {
-        if(user.isAdmin)
+        if(isLoggedIn && user.isAdmin)
             return (
                 <View style={styles.optionsContainer}>
                     <Text style={{ fontSize: 16, fontFamily: 'Poppins', fontWeight: 600, color: '#bbb' }}>Administrador</Text>
@@ -33,7 +38,7 @@ export default function CustomizedModal() {
     }
 
     const renderUserOptions = () => {
-        if(!isLoggedIn)
+        if(isLoggedIn)
             return (
                 <View style={styles.optionsContainer}>
                     <Text style={{ fontSize: 16, fontFamily: 'Poppins', fontWeight: 600, color: '#bbb' }}>Dados pessoais</Text>
@@ -54,7 +59,7 @@ export default function CustomizedModal() {
     return (
         <View style={styles.container}>
             <View style={styles.upside}>
-                <TouchableOpacity style={styles.iconBtn} onPress={() => toggleModal()}>
+                <TouchableOpacity style={styles.iconBtn} onPress={() => dispatch(toggleModal())}>
                     <ArrowCircleLeftIcon style={styles.icon} />
                 </TouchableOpacity>
                 <Text style={styles.textBold}>Opções</Text>

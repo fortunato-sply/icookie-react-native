@@ -11,24 +11,24 @@ import { UserProvider } from './context/User';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import RecipePage from './pages/RecipePage';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 export default function App() {
   const Stack = createStackNavigator();
   return (
-    <NavigationContainer>
-      <UserProvider>
-        <PreferencesProvider>
-          <Stack.Navigator>
-              <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
-              <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
-              <Stack.Screen options={{headerShown: false}} name="Cadastro" component={RegisterPage} />
-              <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
-              <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
-              <Stack.Screen options={{headerShown: false}} name="Receita" component={RecipePage} />
-          </Stack.Navigator>
-        </PreferencesProvider>
-      </UserProvider>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
+                <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
+                <Stack.Screen options={{headerShown: false}} name="Cadastro" component={RegisterPage} />
+                <Stack.Screen options={{headerShown: false}} name="Pesquisar" component={SearchPage} />
+                <Stack.Screen options={{headerShown: false}} name="Favoritos" component={FavoritesPage} />
+                <Stack.Screen options={{headerShown: false}} name="Receita" component={RecipePage} />
+            </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
