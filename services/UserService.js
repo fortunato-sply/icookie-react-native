@@ -6,46 +6,49 @@ import { authSlice } from '../redux/authSlice';
 
 const { setAuth } = authSlice.actions;
 
-const login = async (data) => {
-    console.log(this.props);
-    try {
-        const response = await api.post("http://localhost:8080/auth/login", data)
-            .then(res => {
-                const auth = {
-                    token: res.data.token,
-                    user: res.data.user
-                }
+class UserService {
+    static login = async (data) => {
+        console.log(this.props);
+        try {
+            const response = await api.post("http://localhost:8080/auth/login", data)
+                .then(res => {
+                    const auth = {
+                        token: res.data.token,
+                        user: res.data.user
+                    }
 
-                this.props.setAuth(auth);
-            })
-        
-        return 200;
-    } catch (err) {
-        console.log(err.message);
-        return 400;
+                    return auth;
+                })
+            
+                console.log(response);
+            return 200;
+        } catch (err) {
+            console.log(err.message);
+            return 400;
+        }
     }
-}
 
-const logout = () => {
+    static logout() {
 
-}
+    }
 
-const register = async (data) => {
-    try {
-        const response = await api.post("http://localhost:8080/user/register", data)
-            .then(res => {
-                console.log(res.data);
-            });
-        
-        return 200;
-    } catch (err) {
-        console.log(err.message);
-        return 400;
+    static register = async (data) => {
+        try {
+            const response = await api.post("http://localhost:8080/user/register", data)
+                .then(res => {
+                    console.log(res.data);
+                });
+            
+            return 200;
+        } catch (err) {
+            console.log(err.message);
+            return 400;
+        }
     }
 }
 
 const mapDispatchToProps = {
-    setAuth: setAuth
+    setAuth: setA
 }
 
-export { login, logout, register };
+export default UserService;
