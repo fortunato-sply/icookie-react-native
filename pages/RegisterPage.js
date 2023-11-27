@@ -1,12 +1,44 @@
-import { Link } from "@react-navigation/native";
+import { Link, useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import CheckBox from "../components/CheckBox";
 import Footer from "../components/Footer";
 import * as Animatable from 'react-native-animatable'
+import UserService from "../services/UserService";
 
 export default function RegisterPage({ navigation }) {
+
     const [isChecked, setIsChecked] = useState(true);
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [confPassword, setConfPassword] = useState('');
+
+    const [confirmError, setConfirmError] = useState(false);
+
+    const renderConfirmError = () => {
+        if(confirmError)
+            return (
+                <Text style={{ color: '#B22222', fontSize: 16, marginTop: 16 }}>As senhas não coincidem.</Text>
+            )
+    }
+
+    const onHandleRegister = async () => {
+        if(password != confPassword) {
+            setConfirmError(true);
+            return;
+        }
+
+        const user = {
+            email: email,
+            name: name,
+            password: password
+        }
+
+        const response = await UserService.register(user);
+        if(response === 200)
+            navigation.navigate('Login');
+    }
 
     return (
         <>
@@ -22,13 +54,36 @@ export default function RegisterPage({ navigation }) {
                     style={styles.box}
                 >
                     <View style={styles.inputs}>
-                        <TextInput style={styles.input} placeholderTextColor='#DFDFDF' placeholder='E-mail'></TextInput>
-                        <TextInput style={styles.input} placeholderTextColor='#DFDFDF' placeholder='Nome'></TextInput>
-                        <TextInput style={styles.input} placeholderTextColor='#DFDFDF' placeholder='Senha' secureTextEntry></TextInput>
-                        <TextInput style={styles.input} placeholderTextColor='#DFDFDF' placeholder='Confirmar senha' secureTextEntry></TextInput>
+                        <TextInput 
+                            style={styles.input} 
+                            placeholderTextColor='#DFDFDF' 
+                            onChange={(e) => setEmail(e.target.value)}  
+                            placeholder='E-mail' 
+                        />
+                        <TextInput 
+                            style={styles.input} 
+                            placeholderTextColor='#DFDFDF' 
+                            onChange={(e) => setName(e.target.value)}  
+                            placeholder='Nome' 
+                        />
+                        <TextInput 
+                            style={styles.input} 
+                            placeholderTextColor='#DFDFDF' 
+                            onChange={(e) => { setPassword(e.target.value); setConfirmError(false); }}  
+                            placeholder='Senha' 
+                            secureTextEntry 
+                        />
+                        <TextInput 
+                            style={styles.input} 
+                            placeholderTextColor='#DFDFDF' 
+                            onChange={(e) => { setConfPassword(e.target.value); setConfirmError(false); }}  
+                            placeholder='Confirmar senha' 
+                            secureTextEntry 
+                        />
                     </View>
+                    {renderConfirmError()}
                     <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity style={styles.btn} onPress={() => onHandleRegister()}>
                         <Text style={{ color: '#000', fontSize: 24, fontFamily: 'Poppins', fontWeight: 600 }}>Cadastrar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -95,7 +150,7 @@ const styles = StyleSheet.create({
         marginTop: 40
     },
     register: {
-        marginTop: 30,
+        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center'
     },

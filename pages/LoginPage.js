@@ -3,13 +3,11 @@ import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from "reac
 import Footer from "../components/Footer";
 import { authSlice } from "../redux/authSlice";
 import { useState } from "react";
-import api from '../config/api';
+import UserService from "../services/UserService";
 
 const logo = require('../assets/stencilLogo.png')
 
 export default function LoginPage({ navigation }) {
-    const { setAuth } = authSlice.actions;
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,16 +16,10 @@ export default function LoginPage({ navigation }) {
             email: email,
             password: password
         }
-
-        try {
-            const response = await api.post('/auth/login', user)
-                .then(res => {
-                    console.log(res.status);
-                    console.log(res.data);
-                })
-        } catch (err) {
-            console.log(err.message);
-        }
+        
+        const res = await UserService.login(user);
+        if(res === 200)
+            navigation.navigate('Favoritos');
     }
 
     return (
