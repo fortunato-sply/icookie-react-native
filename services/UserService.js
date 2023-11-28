@@ -2,9 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import api from '../config/api';
-import { authSlice } from '../redux/authSlice';
-
-const { setAuth } = authSlice.actions;
 
 class UserService {
     static login = async (data) => {
@@ -18,13 +15,12 @@ class UserService {
                     }
 
                     return auth;
-                })
+                });
             
-                console.log(response);
-            return 200;
+            return response;
         } catch (err) {
             console.log(err.message);
-            return 400;
+            return null;
         }
     }
 
@@ -45,10 +41,6 @@ class UserService {
             return 400;
         }
     }
-}
-
-const mapDispatchToProps = {
-    setAuth: setA
 }
 
 export default UserService;

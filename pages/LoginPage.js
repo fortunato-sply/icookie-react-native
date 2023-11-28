@@ -4,10 +4,14 @@ import Footer from "../components/Footer";
 import { authSlice } from "../redux/authSlice";
 import { useState } from "react";
 import UserService from "../services/UserService";
+import { useDispatch } from "react-redux";
 
 const logo = require('../assets/stencilLogo.png')
 
 export default function LoginPage({ navigation }) {
+    const { setAuth } = authSlice.actions;
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,8 +22,20 @@ export default function LoginPage({ navigation }) {
         }
         
         const res = await UserService.login(user);
-        if(res === 200)
+        if(res != null){
+            dispatch(setAuth(res));
             navigation.navigate('Favoritos');
+        }
+        else
+            setError(true);
+    }
+
+    const [error, setError] = useState(false);
+    const renderError = () => {
+        if(error)
+            return (
+                <Text style={{ color: '#B22222', fontSize: 16, marginTop: 8, fontWeight: 600 }}>E-mail ou senha incorretos.</Text>
+            )
     }
 
     return (
@@ -27,9 +43,10 @@ export default function LoginPage({ navigation }) {
             <View style={styles.container}>
                 <Image style={styles.img} source={logo} />
                 <View style={styles.inputs}>
-                    <TextInput style={styles.input} onChange={(e) => setEmail(e.target.value)} placeholderTextColor='#DFDFDF' placeholder='E-mail'></TextInput>
-                    <TextInput style={styles.input} onChange={(e) => setPassword(e.target.value)} placeholderTextColor='#DFDFDF' placeholder='Senha' secureTextEntry></TextInput>
+                    <TextInput style={styles.input} onChange={(e) => { setError(false); setEmail(e.target.value) }} placeholderTextColor='#DFDFDF' placeholder='E-mail'></TextInput>
+                    <TextInput style={styles.input} onChange={(e) => { setError(false); setPassword(e.target.value) }} placeholderTextColor='#DFDFDF' placeholder='Senha' secureTextEntry></TextInput>
                 </View>
+                {renderError()} 
                 <TouchableOpacity style={styles.btn} onPress={() => onHandleLogin()}>
                     <Text style={{ color: '#000', fontSize: 24, fontFamily:'Poppins', fontWeight: 600 }}>Entrar</Text>
                 </TouchableOpacity>
