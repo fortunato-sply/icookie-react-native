@@ -13,6 +13,7 @@ import RegisterPage from './pages/RegisterPage';
 import RecipePage from './pages/RecipePage';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import NewRecipePage from './pages/NewRecipePage';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen options={{headerShown: false}} name="new-recipe" component={NewRecipePage} />
                 <Stack.Screen options={{headerShown: false}} name="iCookie" component={MainPage} />
                 <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
                 <Stack.Screen options={{headerShown: false}} name="Cadastro" component={RegisterPage} />
@@ -31,12 +33,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

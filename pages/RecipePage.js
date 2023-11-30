@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: '8px',
+        paddingHorizontal: '2px',
         position: 'fixed',
         top: 0,
         zIndex: 3,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         position: 'absolute',
-        left: 30
+        left: 12
     },
     timeIcon: {
         width: 28,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     },
     imgContainer: {
         marginTop: 24,
-        width: 350,
+        width: '100%',
         height: 190,
     },
     background: {

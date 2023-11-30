@@ -1,10 +1,9 @@
 import { useContext, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Animated, Image } from 'react-native'
-import { PreferencesContext } from '../context/Preferences';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import { UserContext } from '../context/User';
 import { modalSlice } from '../redux/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 const coffeIcon = require('../assets/coffeIcon.png');
 const plusIcon = require('../assets/plusIcon.png');
@@ -12,6 +11,8 @@ const userIcon = require('../assets/userIcon.png');
 const editIcon = require('../assets/editIcon.png');
 
 export default function CustomizedModal() {
+    const navigation = useNavigation();
+
     const dispatch = useDispatch();
     const { toggleModal } = modalSlice.actions;
 
@@ -19,12 +20,15 @@ export default function CustomizedModal() {
     const isLoggedIn = user != null;
 
     const renderAdmOptions = () => {
-        if(isLoggedIn && user.isAdmin)
+        if(isLoggedIn && user.admin)
             return (
                 <View style={styles.optionsContainer}>
                     <Text style={{ fontSize: 16, fontFamily: 'Poppins', fontWeight: 600, color: '#bbb' }}>Administrador</Text>
                     <View style={styles.options}>
-                        <TouchableOpacity style={styles.option}>
+                        <TouchableOpacity 
+                            style={styles.option} 
+                            onPress={() => { navigation.navigate('new-recipe'); dispatch(toggleModal()); }}
+                        >
                             <Image source={coffeIcon} style={styles.optionIcon} />
                             <Text style={{ fontSize: 18, color: '#fff', fontWeight: 500, fontFamily: 'Poppins' }}>Nova receita</Text>
                         </TouchableOpacity>
